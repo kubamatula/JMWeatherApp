@@ -2,7 +2,7 @@
 //  Weather.swift
 //  WeatherApp
 //
-//  Created by Jakub Matuła on 1/10/2017.
+//  Created by Jakub Matuła on 01/10/2017.
 //  Copyright © 2017 Jakub Matuła. All rights reserved.
 //
 
