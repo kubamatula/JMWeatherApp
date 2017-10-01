@@ -48,6 +48,8 @@
 		CE5DA43A1F80FFA000014418 /* WError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WError.swift; sourceTree = "<group>"; };
 		CE5DA43C1F80FFF700014418 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE5DA43E1F8100A100014418 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		CE5DA43F1F81011900014418 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		CE5DA4401F81011900014418 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,8 @@
 		CE5DA42E1F80F1CD00014418 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CE5DA43F1F81011900014418 /* Connection.swift */,
+				CE5DA4401F81011900014418 /* Resource.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
