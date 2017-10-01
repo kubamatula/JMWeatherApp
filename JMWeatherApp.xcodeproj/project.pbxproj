@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D7C190FE5E98BDBF75A9860 /* Pods_JMWeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5A87A07A94402FB658CAFD /* Pods_JMWeatherApp.framework */; };
+		CE0DA2A61F813F7200D1FC24 /* WarszawaLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = CE0DA2A51F813B8900D1FC24 /* WarszawaLocation.json */; };
+		CE0DA2A81F8142B000D1FC24 /* SampleCurrentConditions.json in Resources */ = {isa = PBXBuildFile; fileRef = CE0DA2A71F8142AD00D1FC24 /* SampleCurrentConditions.json */; };
 		CE5DA4091F80EF3800014418 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4081F80EF3800014418 /* AppDelegate.swift */; };
 		CE5DA40E1F80EF3800014418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA40C1F80EF3800014418 /* Main.storyboard */; };
 		CE5DA4101F80EF3800014418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA40F1F80EF3800014418 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		0C0116477872C56640E82816 /* Pods-JMWeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JMWeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JMWeatherApp/Pods-JMWeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		4BB2C1BE9B27617ACEAD72A4 /* Pods-JMWeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JMWeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JMWeatherApp/Pods-JMWeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6D5A87A07A94402FB658CAFD /* Pods_JMWeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JMWeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0DA2A51F813B8900D1FC24 /* WarszawaLocation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WarszawaLocation.json; sourceTree = "<group>"; };
+		CE0DA2A71F8142AD00D1FC24 /* SampleCurrentConditions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleCurrentConditions.json; sourceTree = "<group>"; };
 		CE5DA4051F80EF3800014418 /* JMWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5DA4081F80EF3800014418 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5DA40D1F80EF3800014418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +95,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE0DA2A21F813A7800D1FC24 /* SampleJSONS */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DA2A71F8142AD00D1FC24 /* SampleCurrentConditions.json */,
+				CE0DA2A51F813B8900D1FC24 /* WarszawaLocation.json */,
+			);
+			path = SampleJSONS;
+			sourceTree = "<group>";
+		};
 		CE5DA3FC1F80EF3800014418 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 		CE5DA41C1F80EF3800014418 /* JMWeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				CE0DA2A21F813A7800D1FC24 /* SampleJSONS */,
 				CE5DA41D1F80EF3800014418 /* JMWeatherAppTests.swift */,
 				CE5DA41F1F80EF3800014418 /* Info.plist */,
 			);
@@ -346,6 +360,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0DA2A61F813F7200D1FC24 /* WarszawaLocation.json in Resources */,
+				CE0DA2A81F8142B000D1FC24 /* SampleCurrentConditions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
