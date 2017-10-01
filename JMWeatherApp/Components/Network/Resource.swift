@@ -9,7 +9,7 @@
 import Foundation
 
 /// Object representing a resource on some endpoint, A is the type that can be instantiated once resource data is fetched
-struct Resource<A> {
+struct Resource {
     let path: String
     let parameters: [String: String]
     let method: Method
