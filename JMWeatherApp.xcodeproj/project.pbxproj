@@ -34,6 +34,7 @@
 		CE5DA4191F80EF3800014418 /* JMWeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JMWeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5DA41D1F80EF3800014418 /* JMWeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMWeatherAppTests.swift; sourceTree = "<group>"; };
 		CE5DA41F1F80EF3800014418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE5DA4321F80F43D00014418 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		CE5DA3FC1F80EF3800014418 = {
 			isa = PBXGroup;
 			children = (
+				CE5DA4321F80F43D00014418 /* README.md */,
 				CE5DA4071F80EF3800014418 /* JMWeatherApp */,
 				CE5DA41C1F80EF3800014418 /* JMWeatherAppTests */,
 				CE5DA4061F80EF3800014418 /* Products */,
@@ -81,6 +83,7 @@
 				CE5DA42A1F80F16D00014418 /* ViewControllers */,
 				CE5DA4291F80F16100014418 /* Storyboards */,
 				CE5DA4081F80EF3800014418 /* AppDelegate.swift */,
+				CE5DA4141F80EF3800014418 /* Info.plist */,
 				CE5DA4281F80F0D900014418 /* SupportingFiles */,
 			);
 			path = JMWeatherApp;
@@ -100,7 +103,6 @@
 			children = (
 				CE5DA40F1F80EF3800014418 /* Assets.xcassets */,
 				CE5DA4111F80EF3800014418 /* LaunchScreen.storyboard */,
-				CE5DA4141F80EF3800014418 /* Info.plist */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
