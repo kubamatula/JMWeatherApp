@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE5DA4091F80EF3800014418 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4081F80EF3800014418 /* AppDelegate.swift */; };
-		CE5DA40B1F80EF3800014418 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA40A1F80EF3800014418 /* ViewController.swift */; };
 		CE5DA40E1F80EF3800014418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA40C1F80EF3800014418 /* Main.storyboard */; };
 		CE5DA4101F80EF3800014418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA40F1F80EF3800014418 /* Assets.xcassets */; };
 		CE5DA4131F80EF3800014418 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA4111F80EF3800014418 /* LaunchScreen.storyboard */; };
@@ -28,7 +27,6 @@
 /* Begin PBXFileReference section */
 		CE5DA4051F80EF3800014418 /* JMWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5DA4081F80EF3800014418 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE5DA40A1F80EF3800014418 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE5DA40D1F80EF3800014418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE5DA40F1F80EF3800014418 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE5DA4121F80EF3800014418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,12 +75,13 @@
 		CE5DA4071F80EF3800014418 /* JMWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE5DA42D1F80F19900014418 /* Components */,
+				CE5DA42C1F80F18D00014418 /* Models */,
+				CE5DA42B1F80F17700014418 /* Views */,
+				CE5DA42A1F80F16D00014418 /* ViewControllers */,
+				CE5DA4291F80F16100014418 /* Storyboards */,
 				CE5DA4081F80EF3800014418 /* AppDelegate.swift */,
-				CE5DA40A1F80EF3800014418 /* ViewController.swift */,
-				CE5DA40C1F80EF3800014418 /* Main.storyboard */,
-				CE5DA40F1F80EF3800014418 /* Assets.xcassets */,
-				CE5DA4111F80EF3800014418 /* LaunchScreen.storyboard */,
-				CE5DA4141F80EF3800014418 /* Info.plist */,
+				CE5DA4281F80F0D900014418 /* SupportingFiles */,
 			);
 			path = JMWeatherApp;
 			sourceTree = "<group>";
@@ -94,6 +93,84 @@
 				CE5DA41F1F80EF3800014418 /* Info.plist */,
 			);
 			path = JMWeatherAppTests;
+			sourceTree = "<group>";
+		};
+		CE5DA4281F80F0D900014418 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				CE5DA40F1F80EF3800014418 /* Assets.xcassets */,
+				CE5DA4111F80EF3800014418 /* LaunchScreen.storyboard */,
+				CE5DA4141F80EF3800014418 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CE5DA4291F80F16100014418 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CE5DA40C1F80EF3800014418 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		CE5DA42A1F80F16D00014418 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CE5DA42B1F80F17700014418 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE5DA42C1F80F18D00014418 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE5DA42D1F80F19900014418 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CE5DA4311F80F1F100014418 /* Result */,
+				CE5DA4301F80F1EA00014418 /* Errors */,
+				CE5DA42F1F80F1D700014418 /* WeatherService */,
+				CE5DA42E1F80F1CD00014418 /* Network */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CE5DA42E1F80F1CD00014418 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CE5DA42F1F80F1D700014418 /* WeatherService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WeatherService;
+			sourceTree = "<group>";
+		};
+		CE5DA4301F80F1EA00014418 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		CE5DA4311F80F1F100014418 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5DA40B1F80EF3800014418 /* ViewController.swift in Sources */,
 				CE5DA4091F80EF3800014418 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C5BCJV46N9;
 				INFOPLIST_FILE = JMWeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jakubmatula.JMWeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,6 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C5BCJV46N9;
 				INFOPLIST_FILE = JMWeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jakubmatula.JMWeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
