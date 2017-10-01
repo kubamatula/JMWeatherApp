@@ -95,9 +95,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MML-Zf-edl">
                                 <rect key="frame" x="12" y="280" width="351" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast for the next 12 hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A8c-gc-COv">
+                                    <rect key="frame" x="0.0" y="0.0" width="351" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HourlyForecastCell" id="Egh-IF-gEW" customClass="HourlyForecastTableViewCell" customModule="JMWeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="351" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="351" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Egh-IF-gEW" id="5Ay-sU-zWo">
                                             <rect key="frame" x="0.0" y="0.0" width="351" height="43.5"/>
@@ -141,10 +148,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dateLabel" destination="eET-kC-zWW" id="nDA-U7-k0I"/>
+                                            <outlet property="date" destination="eET-kC-zWW" id="nDA-U7-k0I"/>
                                             <outlet property="iconImageView" destination="vdV-gg-mJx" id="obL-4p-Dwq"/>
                                             <outlet property="spinner" destination="qyc-3q-4sl" id="eDw-iu-5HH"/>
-                                            <outlet property="tempratureLabel" destination="IFr-vI-beE" id="sMQ-fk-0Vr"/>
+                                            <outlet property="temperature" destination="IFr-vI-beE" id="sMQ-fk-0Vr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

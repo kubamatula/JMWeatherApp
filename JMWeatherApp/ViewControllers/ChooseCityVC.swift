@@ -9,6 +9,11 @@
 import UIKit
 
 class ChooseCityVC: UIViewController {
+    // MARK:- Properties
+    
+    var city: String {
+        return cityTextField.text ?? ""
+    }
     
     private var fetchedWeather: Weather?
     
@@ -18,30 +23,31 @@ class ChooseCityVC: UIViewController {
         }
     }
     
-    var city: String {
-        return cityTextField.text ?? ""
-    }
-    
     private lazy var weatherService: WeatherService = {
         let accuWeatherConnection = Connection(session: URLSession.shared)
         let accuWeatherURL = URL(string: Constants.AccuWeatherBaseURL)!
         return AccuWeatherService(connection: accuWeatherConnection, baseURL: accuWeatherURL, APIKey: Constants.AccuWeatherAPIKey)
     }()
     
+    // MARK:- VC Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherService.delegate = self
+        navigationItem.title = "Choose city"
     }
 
+    
+    // MARK:- User Interaction
     @IBAction func checkWeather(_ sender: UIButton) {
         checkWeather(city: city)
     }
     
-    func checkWeather(city: String){
+    private func checkWeather(city: String){
         guard !city.isEmpty else { print("Uzupelnij miasto"); return }
         weatherService.fetchWeather(forCity: city)
     }
 
+    //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
@@ -55,6 +61,7 @@ class ChooseCityVC: UIViewController {
 
 }
 
+//MARK:- UITextFieldDelegate
 extension ChooseCityVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         checkWeather(city: city)
@@ -62,6 +69,7 @@ extension ChooseCityVC: UITextFieldDelegate {
     }
 }
 
+//MARK:- WeatherServiceDelegate
 extension ChooseCityVC: WeatherServiceDelegate {
     func finishedFetching(weather: Weather) {
         fetchedWeather = weather

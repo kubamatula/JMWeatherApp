@@ -10,6 +10,10 @@ import UIKit
 
 class CurrentWeatherVC: UIViewController {
     
+    // MARK:- Properties
+    var forecast: [Weather]?
+    var currentWeather: Weather?
+    
     @IBOutlet weak var currentWeatherView: WeatherDetailsView!
     @IBOutlet weak var forecastTableView: UITableView! {
         didSet {
@@ -24,31 +28,24 @@ class CurrentWeatherVC: UIViewController {
         return AccuWeatherService(connection: accuWeatherConnection, baseURL: accuWeatherURL, APIKey: Constants.AccuWeatherAPIKey)
     }()
     
-    var forecast: [Weather]?
-    
-    var currentWeather: Weather? {
-        didSet {
-            if let weather = currentWeather {
-                currentWeatherView?.weather = weather
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentWeatherView.weather = currentWeather
-        if let weatherIcon = currentWeather?.weatherIcon {
-            fetchWeatherIcon(forId: weatherIcon) { [weak self] iconImage in
-                DispatchQueue.main.async {
-                    self?.currentWeatherView.icon = iconImage
-                }
+        navigationItem.title = "Weather"
+        let weatherViewModel = SimpleWeatherViewModel(weather: currentWeather!,
+                                                      tempratureColorProvider: BasicTemperatureColorProvider(),
+                                                      dateFormatter: DateFormatter.shortDateFormatter)
+        currentWeatherView.viewModel = weatherViewModel
+        fetchWeatherIcon(forId: currentWeather?.weatherIcon) { [weak self] iconImage in
+            DispatchQueue.main.async {
+                self?.currentWeatherView.icon = iconImage
             }
         }
         weatherService.delegate = self
         weatherService.fetch12HourForecast(forCity: currentWeather!.location.locationName)
     }
 
-    private func fetchWeatherIcon(forId id: Int, completion: @escaping (UIImage?) -> Void) {
+    private func fetchWeatherIcon(forId id: Int?, completion: @escaping (UIImage?) -> Void) {
+        guard let id = id else { return }
         DispatchQueue.global(qos: .userInitiated).async {
             let iconURLString = "https://developer.accuweather.com/sites/default/files/\(String(format: "%02d", id))-s.png"
             guard let iconURL = URL(string: iconURLString) else { print("wrong icon url"); return }
@@ -59,6 +56,7 @@ class CurrentWeatherVC: UIViewController {
     }
 }
 
+//MARK:- UITableViewDataSource
 extension CurrentWeatherVC: UITableViewDataSource {
     
     private var forecastCellId: String {
@@ -71,11 +69,15 @@ extension CurrentWeatherVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: forecastCellId, for: indexPath) as! HourlyForecastTableViewCell
-        cell.temprature = forecast?[indexPath.row].temprature
+        let cellViewModel = SimpleWeatherViewModel(weather: forecast![indexPath.row],
+                                                   tempratureColorProvider: BasicTemperatureColorProvider(),
+                                                   dateFormatter: DateFormatter.shortDateFormatter)
+        cell.viewModel = cellViewModel
         return cell
     }
 }
 
+//MARK:- UITableViewDelegate
 extension CurrentWeatherVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
@@ -91,6 +93,7 @@ extension CurrentWeatherVC: UITableViewDelegate {
     }
 }
 
+//MARK:- WeatherServiceDelegate
 extension CurrentWeatherVC: WeatherServiceDelegate {
     func finishedFetching(forecast: [Weather]) {
         self.forecast = forecast

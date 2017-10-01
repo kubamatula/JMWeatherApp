@@ -18,12 +18,12 @@ class WeatherDetailsView: UIView {
     @IBOutlet private weak var temprature: UILabel!
     @IBOutlet private weak var weatherIcon: UIImageView!
     
-    var weather: Weather? {
+    var viewModel: SimpleWeatherViewModel? {
         didSet {
-            guard let weather = weather else { return}
-            temprature?.text = String(describing: weather.temprature) + " °C"
-            weatherDescription?.text = weather.weatherText
-            date?.text = "15:44, 19.02.2017"
+            guard let viewModel = viewModel else { return}
+            temprature?.attributedText = viewModel.coloredTemperature
+            weatherDescription?.text = viewModel.weatherDescirption
+            date?.text = viewModel.date
         }
     }
     

@@ -16,5 +16,6 @@ struct Constants {
 
 struct AppColors {
     static let blue = UIColor.blue
-    static let 
+    static let black = UIColor.black
+    static let red = UIColor.red
 }

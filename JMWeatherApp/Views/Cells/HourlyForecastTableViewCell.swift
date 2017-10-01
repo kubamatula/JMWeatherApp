@@ -10,28 +10,16 @@ import UIKit
 
 class HourlyForecastTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var dateLabel: UILabel!
-    @IBOutlet private weak var tempratureLabel: UILabel!
+    @IBOutlet private weak var date: UILabel!
+    @IBOutlet private weak var temperature: UILabel!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
-    var temprature: Double? {
-        get {
-            return Double(tempratureLabel?.text ?? "0")
-        }
-        set {
-            if let temp = newValue {
-                tempratureLabel?.text = String(describing: temp)
-            }
-        }
-    }
-    
-    var date: String? {
-        get {
-            return dateLabel?.text
-        }
-        set {
-            dateLabel?.text = newValue
+    var viewModel: SimpleWeatherViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return}
+            temperature?.attributedText = viewModel.coloredTemperature
+            date?.text = viewModel.date
         }
     }
     
