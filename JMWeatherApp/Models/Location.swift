@@ -32,3 +32,8 @@ extension Location: Mappable {
     }
 }
 
+extension Location: Equatable {
+    static func ==(lhs: Location, rhs: Location) -> Bool {
+        return lhs.locationKey == rhs.locationKey && lhs.locationName == rhs.locationName
+    }
+}

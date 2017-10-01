@@ -40,3 +40,9 @@ extension Weather: Mappable {
         return .success(Weather(temprature: temprature, pressure: pressure, weatherIcon: weatherIcon, weatherText: weatherText, dateTime: dateTime, location: Location()))
     }
 }
+
+extension Weather: Equatable {
+    static func ==(lhs: Weather, rhs: Weather) -> Bool {
+        return lhs.temprature == rhs.temprature && lhs.pressure == rhs.pressure && lhs.weatherIcon == rhs.weatherIcon && lhs.weatherText == rhs.weatherText && lhs.dateTime == rhs.dateTime && lhs.location == rhs.location
+    }
+}
