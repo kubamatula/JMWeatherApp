@@ -13,7 +13,6 @@ struct Resource<A> {
     let path: String
     let parameters: [String: String]
     let method: Method
-    let parse: (Data) -> A?
 }
 
 extension Resource: CustomStringConvertible {

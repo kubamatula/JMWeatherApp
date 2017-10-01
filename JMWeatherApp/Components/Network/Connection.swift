@@ -24,7 +24,7 @@ extension Connection: Connectable {
     func makeRequest(with request: URLRequest, completion: @escaping (Result<Data, WError>) -> Void) {
         session.dataTask(with: request) { data, _, error in
             switch (data, error) {
-            case(let data?, _): completion(.succes(data))
+            case(let data?, _): completion(.success(data))
             case(_, let error?): completion(.failure(.network(error.localizedDescription)))
             default: break
             }

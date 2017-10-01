@@ -8,5 +8,5 @@
 
 enum WError: Error {
     case network(String)
-    case decoder
+    case parser
 }
