@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Choose CityVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JMWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ChooseCityVC" customModule="JMWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73I-la-DcQ">
-                                <rect key="frame" x="139" y="105" width="97" height="30"/>
+                                <rect key="frame" x="16" y="105" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -29,6 +29,9 @@
                                 <rect key="frame" x="95" y="143" width="187" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Check weather"/>
+                                <connections>
+                                    <action selector="checkWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="quf-wa-XlA"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcg-fx-2iy">
                                 <rect key="frame" x="67" y="181" width="240" height="7"/>
@@ -46,12 +49,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="wcO-lb-F2X"/>
                     <connections>
+                        <outlet property="cityTextField" destination="73I-la-DcQ" id="InW-xy-iRk"/>
                         <segue destination="7xd-sc-uPY" kind="show" identifier="toWeather" id="MnN-Fx-moX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="117"/>
+            <point key="canvasLocation" x="616.79999999999995" y="116.49175412293854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6EU-Vd-xNl">
@@ -71,15 +75,15 @@
             </objects>
             <point key="canvasLocation" x="-138" y="118"/>
         </scene>
-        <!--View Controller-->
+        <!--Current WeatherVC-->
         <scene sceneID="Mix-fF-sN7">
             <objects>
-                <viewController id="7xd-sc-uPY" sceneMemberID="viewController">
+                <viewController id="7xd-sc-uPY" customClass="CurrentWeatherVC" customModule="JMWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IFp-6P-2O7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="cng-1n-5se">
+                            <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="cng-1n-5se" customClass="WeatherDetailsView" customModule="JMWeatherApp" customModuleProvider="target">
                                 <rect key="frame" x="12" y="72" width="351" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -103,6 +107,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AAN-Jh-Tt0"/>
                     </view>
+                    <connections>
+                        <outlet property="currentWeatherView" destination="cng-1n-5se" id="G19-BR-DTf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QbX-Sf-EaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,9 @@
 		0D7C190FE5E98BDBF75A9860 /* Pods_JMWeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5A87A07A94402FB658CAFD /* Pods_JMWeatherApp.framework */; };
 		CE0DA2A61F813F7200D1FC24 /* WarszawaLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = CE0DA2A51F813B8900D1FC24 /* WarszawaLocation.json */; };
 		CE0DA2A81F8142B000D1FC24 /* SampleCurrentConditions.json in Resources */ = {isa = PBXBuildFile; fileRef = CE0DA2A71F8142AD00D1FC24 /* SampleCurrentConditions.json */; };
+		CE0DA2AB1F8147A300D1FC24 /* CurrentWeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DA2AA1F81462100D1FC24 /* CurrentWeatherVC.swift */; };
+		CE0DA2AC1F8147A500D1FC24 /* ChooseCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DA2A91F81462000D1FC24 /* ChooseCityVC.swift */; };
+		CE0DA2AD1F814B7200D1FC24 /* WeatherDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA4331F80F68F00014418 /* WeatherDetailsView.xib */; };
 		CE5DA4091F80EF3800014418 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4081F80EF3800014418 /* AppDelegate.swift */; };
 		CE5DA40E1F80EF3800014418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA40C1F80EF3800014418 /* Main.storyboard */; };
 		CE5DA4101F80EF3800014418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5DA40F1F80EF3800014418 /* Assets.xcassets */; };
@@ -44,6 +47,8 @@
 		6D5A87A07A94402FB658CAFD /* Pods_JMWeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JMWeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0DA2A51F813B8900D1FC24 /* WarszawaLocation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WarszawaLocation.json; sourceTree = "<group>"; };
 		CE0DA2A71F8142AD00D1FC24 /* SampleCurrentConditions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleCurrentConditions.json; sourceTree = "<group>"; };
+		CE0DA2A91F81462000D1FC24 /* ChooseCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityVC.swift; sourceTree = "<group>"; };
+		CE0DA2AA1F81462100D1FC24 /* CurrentWeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherVC.swift; sourceTree = "<group>"; };
 		CE5DA4051F80EF3800014418 /* JMWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5DA4081F80EF3800014418 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5DA40D1F80EF3800014418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +178,8 @@
 		CE5DA42A1F80F16D00014418 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE0DA2A91F81462000D1FC24 /* ChooseCityVC.swift */,
+				CE0DA2AA1F81462100D1FC24 /* CurrentWeatherVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -350,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0DA2AD1F814B7200D1FC24 /* WeatherDetailsView.xib in Resources */,
 				CE5DA4131F80EF3800014418 /* LaunchScreen.storyboard in Resources */,
 				CE5DA4101F80EF3800014418 /* Assets.xcassets in Resources */,
 				CE5DA40E1F80EF3800014418 /* Main.storyboard in Resources */,
@@ -427,8 +435,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5DA4481F81233900014418 /* Result.swift in Sources */,
+				CE0DA2AB1F8147A300D1FC24 /* CurrentWeatherVC.swift in Sources */,
 				CE5DA44B1F81234300014418 /* WeatherService.swift in Sources */,
 				CE5DA4351F80F68F00014418 /* WeatherDetailsView.swift in Sources */,
+				CE0DA2AC1F8147A500D1FC24 /* ChooseCityVC.swift in Sources */,
 				CE5DA44D1F81234900014418 /* Resource.swift in Sources */,
 				CE5DA44A1F81234100014418 /* Location.swift in Sources */,
 				CE5DA4391F80FADD00014418 /* Weather.swift in Sources */,

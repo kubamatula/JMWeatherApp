@@ -46,7 +46,9 @@ class AccuWeatherService: WeatherService {
                 parse(data: data){ (result: Result<[Weather], WError>) in
                     switch result {
                     case .success(let weatherArray):
-                        self.delegate?.finishedFetching(weather: weatherArray.first!)
+                        DispatchQueue.main.async {
+                            self.delegate?.finishedFetching(weather: weatherArray.first!)
+                        }
                     case .failure(let error):
                         DispatchQueue.main.async {
                             self.delegate?.failedFetching(with: error)

@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherDetailsView" customModule="WeatherApp" customModuleProvider="target">
             <connections>
-                <outlet property="contentView" destination="iN0-l3-epB" id="E47-nG-PeT"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Wno-RK-TMJ"/>
                 <outlet property="current" destination="hGy-AQ-63i" id="OMh-Zo-q9X"/>
                 <outlet property="date" destination="NYk-7X-39S" id="mfn-sq-rCd"/>
                 <outlet property="pressure" destination="mkW-ja-GZH" id="9CT-by-WcF"/>
