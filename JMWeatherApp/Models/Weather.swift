@@ -2,12 +2,13 @@
 //  Weather.swift
 //  WeatherApp
 //
-//  Created by Jakub Matuła on 29/09/2017.
+//  Created by Jakub Matuła on 1/10/2017.
 //  Copyright © 2017 Jakub Matuła. All rights reserved.
 //
 
 import Foundation
 
+///Basic struct holding weather data throughout the app
 struct Weather {
     var temprature: Double
     var pressure: Double
