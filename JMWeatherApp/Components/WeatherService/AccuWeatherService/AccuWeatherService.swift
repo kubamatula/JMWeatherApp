@@ -25,13 +25,13 @@ class AccuWeatherService: WeatherService {
     func fetchLocationKey(forCity city: String, completion: @escaping (Result<[Location], WError>) -> Void) {
         let locationResource = self.locationResource(city: city)
         let resourceRequest = locationResource.toRequest(baseURL: baseURL)
-        connection.makeRequest(with: resourceRequest) { result in
+        connection.makeRequest(with: resourceRequest) { [weak self] result in
             switch result {
             case .success(let data):
                 parse(data: data, completion: completion)
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.delegate?.failedFetching(with: error)
+                    self?.delegate?.failedFetching(with: error)
                 }
             }
         }
@@ -40,65 +40,101 @@ class AccuWeatherService: WeatherService {
     func fetchWeather(forLocation location: Location) {
         let currentConditionsResource = self.currentConditionsResource(locationKey: location.locationKey)
         let currentConditionRequest = currentConditionsResource.toRequest(baseURL: self.baseURL)
-        connection.makeRequest(with: currentConditionRequest) { weatherDataResult in
+        connection.makeRequest(with: currentConditionRequest) { [weak self] weatherDataResult in
             switch weatherDataResult {
             case .success(let data):
                 parse(data: data){ (result: Result<[Weather], WError>) in
                     switch result {
                     case .success(let weatherArray):
                         DispatchQueue.main.async {
-                            self.delegate?.finishedFetching(weather: weatherArray.first!)
+                            self?.delegate?.finishedFetching(weather: weatherArray.first!)
                         }
                     case .failure(let error):
                         DispatchQueue.main.async {
-                            self.delegate?.failedFetching(with: error)
+                            self?.delegate?.failedFetching(with: error)
                         }
                     }
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.delegate?.failedFetching(with: error)
+                    self?.delegate?.failedFetching(with: error)
                 }
             }
         }
     }
     
     func fetchWeather(forCity city: String) {
-        fetchLocationKey(forCity: city) { result in
+        fetchLocationKey(forCity: city) { [weak self] result in
             switch result {
             case .success(let locations):
-                guard let location = locations.first else { self.delegate?.failedFetching(with: .parser); return;}
-                self.fetchWeather(forLocation: location)
+                guard let location = locations.first else { self?.delegate?.failedFetching(with: .parser); return;}
+                self?.fetchWeather(forLocation: location)
             case.failure(let error):
                 DispatchQueue.main.async {
-                    self.delegate?.failedFetching(with: error)
+                    self?.delegate?.failedFetching(with: error)
                 }
             }
         }
     }
     
     func fetch12HourForecast(forCity city: String) {
-        return
+        fetchLocationKey(forCity: city) { [weak self] result in
+            switch result {
+            case .success(let locations):
+                guard let location = locations.first else { self?.delegate?.failedFetching(with: .parser); return;}
+                self?.fetch12HourForecast(forLocation: location)
+            case.failure(let error):
+                DispatchQueue.main.async {
+                    self?.delegate?.failedFetching(with: error)
+                }
+            }
+        }
     }
     
-    private func locationResource(city: String) -> Resource<Location> {
+    func fetch12HourForecast(forLocation location: Location) {
+        let forecastResource = self.forecast12HoursResource(locationKey: location.locationKey)
+        let currentConditionRequest = forecastResource.toRequest(baseURL: self.baseURL)
+        connection.makeRequest(with: currentConditionRequest) { [weak self] weatherDataResult in
+            switch weatherDataResult {
+            case .success(let data):
+                parse(data: data){ (result: Result<[Weather], WError>) in
+                    switch result {
+                    case .success(let weatherArray):
+                        DispatchQueue.main.async {
+                            self?.delegate?.finishedFetching(forecast: weatherArray)
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            self?.delegate?.failedFetching(with: error)
+                        }
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.delegate?.failedFetching(with: error)
+                }
+            }
+        }
+    }
+    
+    private func locationResource(city: String) -> Resource {
         let locationPath = "/locations/v1/cities/search"
         let parameters = ["apikey": APIKey, "q": city]
-        let locationResource = Resource<Location>(path: locationPath, parameters: parameters, method: .GET)
+        let locationResource = Resource(path: locationPath, parameters: parameters, method: .GET)
         return locationResource
     }
     
-    private func currentConditionsResource(locationKey: String) -> Resource<Weather> {
+    private func currentConditionsResource(locationKey: String) -> Resource {
         let conditionsPath = "/currentconditions/v1/" + locationKey
         let parameters = ["apikey": APIKey, "details": "true"]
-        let conditionsResource = Resource<Weather>(path: conditionsPath, parameters: parameters, method: .GET)
+        let conditionsResource = Resource(path: conditionsPath, parameters: parameters, method: .GET)
         return conditionsResource
     }
     
-    private func forecast12HoursResource(locationKey: String) -> Resource<[Weather]> {
+    private func forecast12HoursResource(locationKey: String) -> Resource {
         let forecast12HourPath = "/forecasts/v1/hourly/12hour/" + locationKey
         let parameters = ["apikey": APIKey, "details": "true", "metric": "true"]
-        let forecastResource = Resource<[Weather]>(path: forecast12HourPath, parameters: parameters, method: .GET)
+        let forecastResource = Resource(path: forecast12HourPath, parameters: parameters, method: .GET)
         return forecastResource
     }
 }
