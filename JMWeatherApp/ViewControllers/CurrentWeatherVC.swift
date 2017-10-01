@@ -28,9 +28,11 @@ class CurrentWeatherVC: UIViewController {
         return AccuWeatherService(connection: accuWeatherConnection, baseURL: accuWeatherURL, APIKey: Constants.AccuWeatherAPIKey)
     }()
     
+    // MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Weather"
+        
         let weatherViewModel = SimpleWeatherViewModel(weather: currentWeather!,
                                                       tempratureColorProvider: BasicTemperatureColorProvider(),
                                                       dateFormatter: DateFormatter.shortDateFormatter)
@@ -40,6 +42,7 @@ class CurrentWeatherVC: UIViewController {
                 self?.currentWeatherView.icon = iconImage
             }
         }
+        
         weatherService.delegate = self
         weatherService.fetch12HourForecast(forCity: currentWeather!.location.locationName)
     }

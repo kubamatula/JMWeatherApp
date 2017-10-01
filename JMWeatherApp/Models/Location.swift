@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Location {
+struct Location: Codable {
     let locationKey: String
     let locationName: String
 }
