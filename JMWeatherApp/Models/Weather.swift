@@ -16,7 +16,7 @@ struct Weather {
     var weatherIcon: Int
     var weatherText: String
     var dateTime: Int
-    var city: String
+    var location: Location
 }
 
 extension Weather: CustomStringConvertible {
@@ -25,17 +25,18 @@ extension Weather: CustomStringConvertible {
     }
 }
 
-extension Weather {
-    init?(from data: Data){
-        let json = JSON(data: data)
-        guard let temprature = json[0]["Temperature"]["Metric"]["Value"].double,
-            let pressure = json[0]["Pressure"]["Metric"]["Value"].double,
-            let weatherIcon = json[0]["WeatherIcon"].int,
-            let weatherText = json[0]["WeatherText"].string,
-            let dateTime = json[0]["EpochTime"].int
+extension Weather: Mappable {
+    
+    static func mapToModel(_ object: Any) -> Result<Weather, WError> {
+        let json = JSON(object)
+        guard let temprature = json["Temperature"]["Metric"]["Value"].double,
+            let pressure = json["Pressure"]["Metric"]["Value"].double,
+            let weatherIcon = json["WeatherIcon"].int,
+            let weatherText = json["WeatherText"].string,
+            let dateTime = json["EpochTime"].int
             else {
-                return nil
+                return .failure(.parser)
         }
-        self.init(temprature: temprature, pressure: pressure, weatherIcon: weatherIcon, weatherText: weatherText, dateTime: dateTime, city: "")
+        return .success(Weather(temprature: temprature, pressure: pressure, weatherIcon: weatherIcon, weatherText: weatherText, dateTime: dateTime, location: Location()))
     }
 }
