@@ -45,8 +45,13 @@ class AccuWeatherService: WeatherService {
             case .success(let data):
                 parse(data: data){ (result: Result<[Weather], WError>) in
                     switch result {
-                    case .success(let weatherArray):
+                    case .success(var weatherArray):
                         DispatchQueue.main.async {
+                            weatherArray = weatherArray.map {
+                                var weather = $0;
+                                weather.location = location;
+                                return weather
+                            }
                             self?.delegate?.finishedFetching(weather: weatherArray.first!)
                         }
                     case .failure(let error):
@@ -99,8 +104,13 @@ class AccuWeatherService: WeatherService {
             case .success(let data):
                 parse(data: data){ (result: Result<[Weather], WError>) in
                     switch result {
-                    case .success(let weatherArray):
+                    case .success(var weatherArray):
                         DispatchQueue.main.async {
+                            weatherArray = weatherArray.map {
+                                var weather = $0;
+                                weather.location = location;
+                                return weather
+                            }
                             self?.delegate?.finishedFetching(forecast: weatherArray)
                         }
                     case .failure(let error):

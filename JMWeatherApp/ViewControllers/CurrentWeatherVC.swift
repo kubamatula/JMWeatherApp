@@ -11,6 +11,20 @@ import UIKit
 class CurrentWeatherVC: UIViewController {
     
     @IBOutlet weak var currentWeatherView: WeatherDetailsView!
+    @IBOutlet weak var forecastTableView: UITableView! {
+        didSet {
+            forecastTableView.dataSource = self
+            forecastTableView.delegate = self
+        }
+    }
+    
+    private lazy var weatherService: WeatherService = {
+        let accuWeatherConnection = Connection(session: URLSession.shared)
+        let accuWeatherURL = URL(string: Constants.AccuWeatherBaseURL)!
+        return AccuWeatherService(connection: accuWeatherConnection, baseURL: accuWeatherURL, APIKey: Constants.AccuWeatherAPIKey)
+    }()
+    
+    var forecast: [Weather]?
     
     var currentWeather: Weather? {
         didSet {
@@ -30,6 +44,8 @@ class CurrentWeatherVC: UIViewController {
                 }
             }
         }
+        weatherService.delegate = self
+        weatherService.fetch12HourForecast(forCity: currentWeather!.location.locationName)
     }
 
     private func fetchWeatherIcon(forId id: Int, completion: @escaping (UIImage?) -> Void) {
@@ -42,3 +58,48 @@ class CurrentWeatherVC: UIViewController {
         }
     }
 }
+
+extension CurrentWeatherVC: UITableViewDataSource {
+    
+    private var forecastCellId: String {
+        return "HourlyForecastCell"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return forecast?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: forecastCellId, for: indexPath) as! HourlyForecastTableViewCell
+        cell.temprature = forecast?[indexPath.row].temprature
+        return cell
+    }
+}
+
+extension CurrentWeatherVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let cell = cell as? HourlyForecastTableViewCell,
+            let weatherIcon = forecast?[indexPath.row].weatherIcon
+        else { return }
+        
+        fetchWeatherIcon(forId: weatherIcon) { [weak cell] iconImage in
+            DispatchQueue.main.async {
+                cell?.icon = iconImage
+            }
+        }
+    }
+}
+
+extension CurrentWeatherVC: WeatherServiceDelegate {
+    func finishedFetching(forecast: [Weather]) {
+        self.forecast = forecast
+        forecastTableView.reloadData()
+    }
+    
+    func failedFetching(with error: WError) {
+        print("Failure \(error.localizedDescription)")
+    }
+}
+
+

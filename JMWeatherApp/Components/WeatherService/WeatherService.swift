@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol WeatherService {
+protocol WeatherService: AnyObject {
     func fetchWeather(forCity: String)
     func fetch12HourForecast(forCity: String)
     weak var delegate: WeatherServiceDelegate? { get set }

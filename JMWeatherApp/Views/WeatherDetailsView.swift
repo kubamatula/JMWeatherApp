@@ -16,7 +16,6 @@ class WeatherDetailsView: UIView {
     @IBOutlet private weak var date: UILabel!
     @IBOutlet private weak var weatherDescription: UILabel!
     @IBOutlet private weak var temprature: UILabel!
-    @IBOutlet private weak var pressure: UILabel!
     @IBOutlet private weak var weatherIcon: UIImageView!
     
     var weather: Weather? {
@@ -24,7 +23,6 @@ class WeatherDetailsView: UIView {
             guard let weather = weather else { return}
             temprature?.text = String(describing: weather.temprature) + " °C"
             weatherDescription?.text = weather.weatherText
-            pressure?.text = "Pressure" + " " + String(describing: weather.pressure) + " hPa"
             date?.text = "15:44, 19.02.2017"
         }
     }

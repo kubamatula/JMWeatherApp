@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,6 +95,59 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MML-Zf-edl">
                                 <rect key="frame" x="12" y="280" width="351" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HourlyForecastCell" id="Egh-IF-gEW" customClass="HourlyForecastTableViewCell" customModule="JMWeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="351" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Egh-IF-gEW" id="5Ay-sU-zWo">
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="vdV-gg-mJx">
+                                                    <rect key="frame" x="307.5" y="0.0" width="43.5" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="vdV-gg-mJx" secondAttribute="height" id="xVy-jN-b5K"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eET-kC-zWW">
+                                                    <rect key="frame" x="16" y="27.5" width="42" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-vI-beE">
+                                                    <rect key="frame" x="16" y="16" width="283.5" height="4.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qyc-3q-4sl">
+                                                    <rect key="frame" x="319" y="11" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eET-kC-zWW" secondAttribute="trailing" constant="20" symbolic="YES" id="3oh-kA-KSD"/>
+                                                <constraint firstItem="eET-kC-zWW" firstAttribute="leading" secondItem="IFr-vI-beE" secondAttribute="leading" id="4Wi-TS-m8Z"/>
+                                                <constraint firstItem="qyc-3q-4sl" firstAttribute="centerY" secondItem="vdV-gg-mJx" secondAttribute="centerY" id="GeZ-hM-4wZ"/>
+                                                <constraint firstItem="qyc-3q-4sl" firstAttribute="centerX" secondItem="vdV-gg-mJx" secondAttribute="centerX" id="Ky3-b7-pu1"/>
+                                                <constraint firstAttribute="bottom" secondItem="vdV-gg-mJx" secondAttribute="bottom" id="V5R-wa-qod"/>
+                                                <constraint firstItem="IFr-vI-beE" firstAttribute="leading" secondItem="5Ay-sU-zWo" secondAttribute="leadingMargin" constant="8" id="dyc-zD-2Oe"/>
+                                                <constraint firstItem="IFr-vI-beE" firstAttribute="top" secondItem="5Ay-sU-zWo" secondAttribute="topMargin" constant="8" id="f8T-Hn-qZd"/>
+                                                <constraint firstItem="vdV-gg-mJx" firstAttribute="leading" secondItem="IFr-vI-beE" secondAttribute="trailing" constant="8" id="lAL-ge-3pX"/>
+                                                <constraint firstItem="eET-kC-zWW" firstAttribute="top" secondItem="IFr-vI-beE" secondAttribute="bottom" constant="7" id="oJ7-gG-MfH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="eET-kC-zWW" secondAttribute="bottom" constant="8" id="rYh-93-1uI"/>
+                                                <constraint firstItem="vdV-gg-mJx" firstAttribute="top" secondItem="5Ay-sU-zWo" secondAttribute="top" id="tcb-Ia-Sr2"/>
+                                                <constraint firstItem="vdV-gg-mJx" firstAttribute="trailing" secondItem="5Ay-sU-zWo" secondAttribute="trailingMargin" constant="8" id="zpJ-Zy-JYe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="eET-kC-zWW" id="nDA-U7-k0I"/>
+                                            <outlet property="iconImageView" destination="vdV-gg-mJx" id="obL-4p-Dwq"/>
+                                            <outlet property="spinner" destination="qyc-3q-4sl" id="eDw-iu-5HH"/>
+                                            <outlet property="tempratureLabel" destination="IFr-vI-beE" id="sMQ-fk-0Vr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,6 +164,7 @@
                     </view>
                     <connections>
                         <outlet property="currentWeatherView" destination="cng-1n-5se" id="G19-BR-DTf"/>
+                        <outlet property="forecastTableView" destination="MML-Zf-edl" id="bQp-lr-b46"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QbX-Sf-EaD" userLabel="First Responder" sceneMemberID="firstResponder"/>

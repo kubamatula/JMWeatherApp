@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     static let AccuWeatherAPIKey = "fzCxAUGvNm61RGm897symSYhVTyYJ5CC"
     static let AccuWeatherBaseURL = "http://dataservice.accuweather.com"
+}
+
+struct AppColors {
+    static let blue = UIColor.blue
+    static let 
 }

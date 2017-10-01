@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -11,12 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherDetailsView" customModule="WeatherApp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherDetailsView" customModule="JMWeatherApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Wno-RK-TMJ"/>
                 <outlet property="current" destination="hGy-AQ-63i" id="OMh-Zo-q9X"/>
                 <outlet property="date" destination="NYk-7X-39S" id="mfn-sq-rCd"/>
-                <outlet property="pressure" destination="mkW-ja-GZH" id="9CT-by-WcF"/>
                 <outlet property="stackView" destination="jPd-JF-38n" id="nLb-Dp-Ei9"/>
                 <outlet property="temprature" destination="rK4-JW-HAU" id="nBB-ut-dAW"/>
                 <outlet property="weatherDescription" destination="RTq-CH-2q7" id="RdU-ah-BBd"/>
@@ -32,7 +32,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="291"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LKl-QP-edd">
-                            <rect key="frame" x="0.0" y="0.0" width="244.5" height="139.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="244.5" height="111"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6aA-Yr-Z6t">
                                     <rect key="frame" x="0.0" y="0.0" width="185" height="54"/>
@@ -59,12 +59,6 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="temprature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rK4-JW-HAU">
                                     <rect key="frame" x="0.0" y="90.5" width="85" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pressure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkW-ja-GZH">
-                                    <rect key="frame" x="0.0" y="119" width="67" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
