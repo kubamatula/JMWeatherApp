@@ -38,7 +38,7 @@ class AccuWeatherService: WeatherService {
     }
     
     func fetchWeather(forLocation location: Location) {
-        let currentConditionsResource = self.currentConditionsResource(locationKey: location.locationKey)
+        let currentConditionsResource = self.currentConditionsResource(locationKey: location.key!)
         let currentConditionRequest = currentConditionsResource.toRequest(baseURL: self.baseURL)
         connection.makeRequest(with: currentConditionRequest) { [weak self] weatherDataResult in
             switch weatherDataResult {
@@ -73,6 +73,9 @@ class AccuWeatherService: WeatherService {
             switch result {
             case .success(let locations):
                 guard let location = locations.first else { self?.delegate?.failedFetching(with: .parser); return;}
+                DispatchQueue.main.async {
+                    self?.delegate?.finishedFetching(location: location)
+                }
                 self?.fetchWeather(forLocation: location)
             case.failure(let error):
                 DispatchQueue.main.async {
@@ -97,7 +100,7 @@ class AccuWeatherService: WeatherService {
     }
     
     func fetch12HourForecast(forLocation location: Location) {
-        let forecastResource = self.forecast12HoursResource(locationKey: location.locationKey)
+        let forecastResource = self.forecast12HoursResource(locationKey: location.key!)
         let currentConditionRequest = forecastResource.toRequest(baseURL: self.baseURL)
         connection.makeRequest(with: currentConditionRequest) { [weak self] weatherDataResult in
             switch weatherDataResult {

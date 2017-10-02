@@ -44,7 +44,7 @@ class CurrentWeatherVC: UIViewController {
         }
         
         weatherService.delegate = self
-        weatherService.fetch12HourForecast(forCity: currentWeather!.location.locationName)
+        weatherService.fetch12HourForecast(forCity: currentWeather!.location.name)
     }
 
     private func fetchWeatherIcon(forId id: Int?, completion: @escaping (UIImage?) -> Void) {
