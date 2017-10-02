@@ -47,4 +47,8 @@ struct SimpleWeatherViewModel {
         return dateFormatter.string(from: date)
     }
     
+    var city: String {
+        return weather.location.name
+    }
+    
 }

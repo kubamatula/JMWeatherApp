@@ -12,7 +12,7 @@ class WeatherDetailsView: UIView {
 
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private var contentView:UIView?
-    @IBOutlet private weak var current: UILabel!
+    @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var date: UILabel!
     @IBOutlet private weak var weatherDescription: UILabel!
     @IBOutlet private weak var temprature: UILabel!
@@ -24,6 +24,7 @@ class WeatherDetailsView: UIView {
             temprature?.attributedText = viewModel.coloredTemperature
             weatherDescription?.text = viewModel.weatherDescirption
             date?.text = viewModel.date
+            title?.text = "Current - " + viewModel.city
         }
     }
     

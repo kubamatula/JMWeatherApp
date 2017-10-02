@@ -12,8 +12,19 @@ class ChooseCityVC: UIViewController {
     // MARK:- Properties
     
     @IBOutlet weak var tableView: UITableView! {
-        didSet { tableView.dataSource = self; tableView.delegate = self }
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
     }
+    
+    @IBOutlet private weak var cityTextField: UITextField! {
+        didSet {
+            cityTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var city: String {
         return cityTextField.text ?? ""
@@ -23,12 +34,6 @@ class ChooseCityVC: UIViewController {
     
     private let locationPersistanceManager: LocationPersistanceManager = DiskCityPersistanceManager.sharedInstance
     private var fetchedWeather: Weather?
-    
-    @IBOutlet private weak var cityTextField: UITextField! {
-        didSet {
-            cityTextField.delegate = self
-        }
-    }
     
     private lazy var weatherService: WeatherService = {
         let accuWeatherConnection = Connection(session: URLSession.shared)
@@ -49,6 +54,7 @@ class ChooseCityVC: UIViewController {
     }
     
     private func checkWeather(city: String){
+        spinner.startAnimating()
         guard !city.isEmpty else { print("Uzupelnij miasto"); return }
         weatherService.fetchWeather(forCity: city)
     }
@@ -78,9 +84,14 @@ extension ChooseCityVC: UITextFieldDelegate {
 //MARK:- WeatherServiceDelegate
 extension ChooseCityVC: WeatherServiceDelegate {
     func finishedFetching(weather: Weather) {
+        spinner.stopAnimating()
         fetchedWeather = weather
         print("Weather: \(weather)")
         performSegue(withIdentifier: "toWeather", sender: self)
+    }
+    
+    func failedFetching(with error: WError) {
+        spinner.stopAnimating()
     }
     
     func finishedFetching(location: Location) {
@@ -116,6 +127,7 @@ extension ChooseCityVC: UITableViewDataSource {
 extension ChooseCityVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let location = storedLocations[indexPath.row]
+        spinner.startAnimating()
         weatherService.fetchWeather(forLocation: location)
     }
 }
