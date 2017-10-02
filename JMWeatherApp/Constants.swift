@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let AccuWeatherAPIKey = "ul4CyQv40CEWIsW7KjcpVUMtBHGQDYTY"
+    static let AccuWeatherAPIKey = "KGKtobBK1GD4qYxOpZVA6QSYfrhipEMQ"
+    //backup APIKey
+    //static let AccuWeatherAPIKey = "ul4CyQv40CEWIsW7KjcpVUMtBHGQDYTY"
     static let AccuWeatherBaseURL = "http://dataservice.accuweather.com"
 }
 

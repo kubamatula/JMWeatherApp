@@ -41,12 +41,12 @@ class WeatherDetailsView: UIView {
         return stackView.intrinsicContentSize
     }
     
-    override init(frame: CGRect) { // for using CustomView in code
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) { // for using CustomView in IB
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
     }
