@@ -92,10 +92,12 @@ extension ChooseCityVC: UITextFieldDelegate {
 
 //MARK:- WeatherServiceDelegate
 extension ChooseCityVC: WeatherServiceDelegate {
-    func finishedFetching(weather: Weather) {
+    func finishedFetching(weather: [Weather]) {
         spinner.stopAnimating()
-        fetchedWeather = weather
-        performSegue(withIdentifier: Segues.toWeather.identifier, sender: self)
+        fetchedWeather = weather.first
+        if fetchedWeather != nil {
+            performSegue(withIdentifier: Segues.toWeather.identifier, sender: self)
+        }
     }
     
     func failedFetching(with error: WError) {
