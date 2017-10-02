@@ -29,14 +29,14 @@ extension WeatherService {
 }
 
 protocol WeatherServiceDelegate: AnyObject {
-    func finishedFetching(weather: Weather)
+    func finishedFetching(weather: [Weather])
     func finishedFetching(forecast: [Weather])
     func failedFetching(with error: WError)
     func finishedFetching(location: Location)
 }
 
 extension WeatherServiceDelegate {
-    func finishedFetching(weather: Weather){}
+    func finishedFetching(weather: [Weather]){}
     func finishedFetching(forecast: [Weather]){}
     func failedFetching(with error: WError){}
     func finishedFetching(location: Location){}
