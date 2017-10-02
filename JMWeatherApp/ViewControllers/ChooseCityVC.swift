@@ -54,8 +54,8 @@ class ChooseCityVC: UIViewController {
     }
     
     private func checkWeather(city: String){
+        guard !city.isEmpty else { alert(message: "Make sure city name is typed in"); return }
         spinner.startAnimating()
-        guard !city.isEmpty else { print("Uzupelnij miasto"); return }
         weatherService.fetchWeather(forCity: city)
     }
 
@@ -63,7 +63,7 @@ class ChooseCityVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
-        case "toWeather":
+        case Segues.toWeather.identifier:
             let currentWeatherVC = segue.destination as! CurrentWeatherVC
             currentWeatherVC.currentWeather = fetchedWeather
         default:
@@ -76,7 +76,17 @@ class ChooseCityVC: UIViewController {
 //MARK:- TextFieldDelegate
 extension ChooseCityVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        checkWeather(city: city)
+        if textField == cityTextField {
+            checkWeather(city: city)
+            return true
+        }
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == cityTextField {
+            return string.isLatinOnly
+        }
         return true
     }
 }
@@ -86,11 +96,12 @@ extension ChooseCityVC: WeatherServiceDelegate {
     func finishedFetching(weather: Weather) {
         spinner.stopAnimating()
         fetchedWeather = weather
-        print("Weather: \(weather)")
         performSegue(withIdentifier: "toWeather", sender: self)
     }
     
     func failedFetching(with error: WError) {
+        print("Failure \(error.localizedDescription)")
+        alert(message: "Something went wrong. Make sure You are connected to the internet, and have entered a correct city name", title: "Error")
         spinner.stopAnimating()
     }
     

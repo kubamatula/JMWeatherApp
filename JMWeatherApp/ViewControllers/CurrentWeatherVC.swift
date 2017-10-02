@@ -105,6 +105,7 @@ extension CurrentWeatherVC: WeatherServiceDelegate {
     
     func failedFetching(with error: WError) {
         print("Failure \(error.localizedDescription)")
+        alert(message: "Something went wrong. Make sure You are connected to the internet", title: "Error")
     }
 }
 

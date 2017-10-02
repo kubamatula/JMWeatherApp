@@ -19,3 +19,11 @@ struct AppColors {
     static let black = UIColor.black
     static let red = UIColor.red
 }
+
+enum Segues: String {
+    case toWeather = "toWeather"
+    
+    var identifier: String {
+        return self.rawValue
+    }
+}

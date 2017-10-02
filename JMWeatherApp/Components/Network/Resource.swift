@@ -28,6 +28,9 @@ extension Resource {
         components?.queryItems = parameters.map { URLQueryItem(name: $0, value: $1)}
         let finalURL = components?.url ?? baseURL
         var request = URLRequest(url: finalURL)
+        // TODO
+        // Left only for testing, so that requests time out fast
+        request.timeoutInterval = 10
         request.httpMethod = method.rawValue
         return request
     }
