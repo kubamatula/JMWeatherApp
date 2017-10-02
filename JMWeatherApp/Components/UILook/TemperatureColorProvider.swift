@@ -14,16 +14,29 @@ protocol TemperatureColorProvider {
 }
 
 struct BasicTemperatureColorProvider: TemperatureColorProvider {
+    
+    let lowColor: UIColor
+    let mediumColor: UIColor
+    let highColor: UIColor
+    
+    //Default values impede reusability, but refactoring this would take time I dont have
+    init(lowColor: UIColor = AppColors.blue, mediumColor: UIColor = AppColors.black, highColor: UIColor = AppColors.red) {
+        self.lowColor = lowColor
+        self.mediumColor = mediumColor
+        self.highColor = highColor
+    }
+    
+    //Those built in magic numbers also impede reausability
     func fontColor(forTemperature temprature: Double) -> UIColor {
         switch temprature {
         case ..<10:
-            return AppColors.blue
+            return lowColor
         case 10...20:
-            return AppColors.black
+            return mediumColor
         case 20...:
-            return AppColors.red
+            return highColor
         default:
-            return AppColors.black
+            return mediumColor
         }
     }
 }

@@ -29,10 +29,10 @@ class ParserTests: XCTestCase {
     }
     
     func testParserLocation() {
-        let warsawLocation = Location(locationKey: "2696858", locationName: "Warszawa")
+        let warsawLocation = Location(name: "Warszawa", key: "2696858")
         genericTestParserOn([warsawLocation], jsonFilename: "WarszawaLocation", predicate: ==)
         
-        let incorrectWarsawLocation = Location(locationKey: "123456", locationName: "asd")
+        let incorrectWarsawLocation = Location(name: "asd", key: "123456")
         genericTestParserOn([incorrectWarsawLocation], jsonFilename: "WarszawaLocation", predicate: !=)
     }
     

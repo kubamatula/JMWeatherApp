@@ -12,9 +12,9 @@ import XCTest
 class DiskCityPersistanceManagerTests: XCTestCase {
     
     let sampleLocations = [
-        Location(locationKey: "1", locationName: "1"),
-        Location(locationKey: "2", locationName: "3"),
-        Location(locationKey: "4", locationName: "5"),
+        Location(name: "1", key: "1"),
+        Location(name: "2", key: "3"),
+        Location(name: "4", key: "5"),
     ]
     
     func testLoadLocationsDoesntCrash(){
