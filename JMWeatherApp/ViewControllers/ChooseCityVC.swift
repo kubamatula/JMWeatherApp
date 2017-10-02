@@ -84,7 +84,9 @@ extension ChooseCityVC: WeatherServiceDelegate {
     }
     
     func finishedFetching(location: Location) {
-        storedLocations.append(location)
+        if !storedLocations.contains(location) {
+            storedLocations.append(location)
+        }
         locationPersistanceManager.saveLocations(storedLocations)
         tableView.reloadData()
     }
