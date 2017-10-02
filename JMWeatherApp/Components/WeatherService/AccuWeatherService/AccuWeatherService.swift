@@ -13,7 +13,7 @@ class AccuWeatherService: WeatherService {
     private let APIKey: String
     private let baseURL: URL
     private let connection: Connectable
-    var delegate: WeatherServiceDelegate?
+    weak var delegate: WeatherServiceDelegate?
 
     init(connection: Connectable, baseURL: URL, APIKey: String) {
         self.connection = connection
