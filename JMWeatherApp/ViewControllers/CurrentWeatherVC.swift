@@ -62,16 +62,12 @@ class CurrentWeatherVC: UIViewController {
 //MARK:- UITableViewDataSource
 extension CurrentWeatherVC: UITableViewDataSource {
     
-    private var forecastCellId: String {
-        return "HourlyForecastCell"
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return forecast?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: forecastCellId, for: indexPath) as! HourlyForecastTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.forecast.identifier, for: indexPath) as! HourlyForecastTableViewCell
         let cellViewModel = SimpleWeatherViewModel(weather: forecast![indexPath.row],
                                                    tempratureColorProvider: BasicTemperatureColorProvider(),
                                                    dateFormatter: DateFormatter.shortDateFormatter)

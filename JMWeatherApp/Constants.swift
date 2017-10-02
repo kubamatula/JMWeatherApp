@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let AccuWeatherAPIKey = "fzCxAUGvNm61RGm897symSYhVTyYJ5CC"
+    static let AccuWeatherAPIKey = "ul4CyQv40CEWIsW7KjcpVUMtBHGQDYTY"
     static let AccuWeatherBaseURL = "http://dataservice.accuweather.com"
 }
 
@@ -21,7 +21,16 @@ struct AppColors {
 }
 
 enum Segues: String {
-    case toWeather = "toWeather"
+    case toWeather = "ToWeather"
+    
+    var identifier: String {
+        return self.rawValue
+    }
+}
+
+enum Cells: String {
+    case city = "CityTableViewCell"
+    case forecast = "HourlyForecastCell"
     
     var identifier: String {
         return self.rawValue

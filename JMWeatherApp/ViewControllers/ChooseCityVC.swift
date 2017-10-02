@@ -10,7 +10,6 @@ import UIKit
 
 class ChooseCityVC: UIViewController {
     // MARK:- Properties
-    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
@@ -96,7 +95,7 @@ extension ChooseCityVC: WeatherServiceDelegate {
     func finishedFetching(weather: Weather) {
         spinner.stopAnimating()
         fetchedWeather = weather
-        performSegue(withIdentifier: "toWeather", sender: self)
+        performSegue(withIdentifier: Segues.toWeather.identifier, sender: self)
     }
     
     func failedFetching(with error: WError) {
@@ -117,17 +116,12 @@ extension ChooseCityVC: WeatherServiceDelegate {
 
 //MARK:- TableViewDataSource
 extension ChooseCityVC: UITableViewDataSource {
-    
-    private var cityCellIdentifier: String {
-        return "CityTableViewCell"
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return storedLocations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cityCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.city.identifier, for: indexPath)
         let city = storedLocations[indexPath.row].name
         cell.textLabel?.text = city
         return cell

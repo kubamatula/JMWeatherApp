@@ -10,7 +10,6 @@ import Foundation
 import SwiftyJSON
 
 class AccuWeatherService: WeatherService {
-    //accuweather
     private let APIKey: String
     private let baseURL: URL
     private let connection: Connectable
@@ -43,7 +42,7 @@ class AccuWeatherService: WeatherService {
         connection.makeRequest(with: currentConditionRequest) { [weak self] weatherDataResult in
             switch weatherDataResult {
             case .success(let data):
-                parse(data: data){ (result: Result<[Weather], WError>) in
+                parse(data: data) { (result: Result<[Weather], WError>) in
                     switch result {
                     case .success(var weatherArray):
                         DispatchQueue.main.async {
@@ -72,7 +71,8 @@ class AccuWeatherService: WeatherService {
         fetchLocationKey(forCity: city) { [weak self] result in
             switch result {
             case .success(let locations):
-                guard let location = locations.first else { self?.delegate?.failedFetching(with: .parser); return;}
+                guard let location = locations.first
+                    else { self?.delegate?.failedFetching(with: .parser); return;}
                 DispatchQueue.main.async {
                     self?.delegate?.finishedFetching(location: location)
                 }
@@ -89,7 +89,8 @@ class AccuWeatherService: WeatherService {
         fetchLocationKey(forCity: city) { [weak self] result in
             switch result {
             case .success(let locations):
-                guard let location = locations.first else { self?.delegate?.failedFetching(with: .parser); return;}
+                guard let location = locations.first
+                    else { self?.delegate?.failedFetching(with: .parser); return;}
                 self?.fetch12HourForecast(forLocation: location)
             case.failure(let error):
                 DispatchQueue.main.async {
@@ -105,7 +106,7 @@ class AccuWeatherService: WeatherService {
         connection.makeRequest(with: currentConditionRequest) { [weak self] weatherDataResult in
             switch weatherDataResult {
             case .success(let data):
-                parse(data: data){ (result: Result<[Weather], WError>) in
+                parse(data: data) { (result: Result<[Weather], WError>) in
                     switch result {
                     case .success(var weatherArray):
                         DispatchQueue.main.async {
@@ -130,6 +131,8 @@ class AccuWeatherService: WeatherService {
         }
     }
     
+    //MARK :- Resource Creating Methods
+    //TODO if doing localization, make sure to include extra parameters for it here
     private func locationResource(city: String) -> Resource {
         let locationPath = "/locations/v1/cities/search"
         let parameters = ["apikey": APIKey, "q": city]

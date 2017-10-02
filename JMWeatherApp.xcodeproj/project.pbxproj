@@ -153,10 +153,11 @@
 		CE5DA4071F80EF3800014418 /* JMWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				CED90E2C1F8196C60049020D /* CocoaExtensions */,
 				CE5DA43C1F80FFF700014418 /* Constants.swift */,
+				CED90E2C1F8196C60049020D /* CocoaExtensions */,
 				CE5DA42D1F80F19900014418 /* Components */,
 				CE5DA42C1F80F18D00014418 /* Models */,
+				CED90E271F8187050049020D /* UILook */,
 				CE5DA42B1F80F17700014418 /* Views */,
 				CE5DA42A1F80F16D00014418 /* ViewControllers */,
 				CE5DA4291F80F16100014418 /* Storyboards */,
@@ -229,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				CED90E2F1F819EE10049020D /* Persistence */,
-				CED90E271F8187050049020D /* UILook */,
 				CE5DA4451F8122F400014418 /* Parser */,
 				CE5DA4311F80F1F100014418 /* Result */,
 				CE5DA4301F80F1EA00014418 /* Errors */,

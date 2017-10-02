@@ -91,7 +91,7 @@
                         <outlet property="cityTextField" destination="73I-la-DcQ" id="InW-xy-iRk"/>
                         <outlet property="spinner" destination="mod-Wb-6Bw" id="Pos-Dl-aTo"/>
                         <outlet property="tableView" destination="8iZ-9K-o3R" id="8Kp-lL-azi"/>
-                        <segue destination="7xd-sc-uPY" kind="show" identifier="toWeather" id="MnN-Fx-moX"/>
+                        <segue destination="7xd-sc-uPY" kind="show" identifier="ToWeather" id="MnN-Fx-moX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
