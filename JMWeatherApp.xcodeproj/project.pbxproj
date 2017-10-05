@@ -161,9 +161,10 @@
 		CE5DA4071F80EF3800014418 /* JMWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE5DA4081F80EF3800014418 /* AppDelegate.swift */,
+				CE5DA43C1F80FFF700014418 /* Constants.swift */,
 				CE7FA1481F85BE8800B1DFE2 /* DataSources */,
 				8CCEC78E1F84F09600A57958 /* AccuWeatherApi */,
-				CE5DA43C1F80FFF700014418 /* Constants.swift */,
 				CED90E2C1F8196C60049020D /* CocoaExtensions */,
 				CE5DA42D1F80F19900014418 /* Components */,
 				CE5DA42C1F80F18D00014418 /* Models */,
@@ -171,8 +172,6 @@
 				CE5DA42B1F80F17700014418 /* Views */,
 				CE5DA42A1F80F16D00014418 /* ViewControllers */,
 				CE5DA4291F80F16100014418 /* Storyboards */,
-				CE5DA4081F80EF3800014418 /* AppDelegate.swift */,
-				CE5DA4141F80EF3800014418 /* Info.plist */,
 				CE5DA4281F80F0D900014418 /* SupportingFiles */,
 			);
 			path = JMWeatherApp;
@@ -193,6 +192,7 @@
 		CE5DA4281F80F0D900014418 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				CE5DA4141F80EF3800014418 /* Info.plist */,
 				CE5DA40F1F80EF3800014418 /* Assets.xcassets */,
 				CE5DA4111F80EF3800014418 /* LaunchScreen.storyboard */,
 			);
