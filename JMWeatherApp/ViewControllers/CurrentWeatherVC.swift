@@ -16,23 +16,21 @@ class CurrentWeatherVC: UIViewController {
     var weatherService: WeatherService!
     
     @IBOutlet weak var currentWeatherView: WeatherDetailsView!
-    @IBOutlet weak var forecastTableView: UITableView! {
-        didSet {
-            forecastTableView.dataSource = self
-            forecastTableView.delegate = self
-        }
-    }
+    @IBOutlet weak var forecastTableView: UITableView!
     
     // MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        forecastTableView.dataSource = self
+        forecastTableView.delegate = self
+        
         navigationItem.title = "Weather"
         
         let weatherViewModel = SimpleWeatherViewModel(weather: currentWeather!,
                                                       tempratureColorProvider: BasicTemperatureColorProvider(),
                                                       dateFormatter: DateFormatter.shortDateFormatter)
         currentWeatherView.viewModel = weatherViewModel
-        fetchWeatherIcon(forId: currentWeather?.weatherIcon) { [weak self] iconImage in
+        fetchWeatherIcon(weather: currentWeather) { [weak self] iconImage in
             DispatchQueue.main.async {
                 self?.currentWeatherView.icon = iconImage
             }
@@ -46,15 +44,9 @@ class CurrentWeatherVC: UIViewController {
         }
     }
 
-    private func fetchWeatherIcon(forId id: Int?, completion: @escaping (UIImage?) -> Void) {
-        guard let id = id else { return }
-        DispatchQueue.global(qos: .userInitiated).async {
-            let iconURLString = "https://developer.accuweather.com/sites/default/files/\(String(format: "%02d", id))-s.png"
-            guard let iconURL = URL(string: iconURLString) else { print("wrong icon url"); return }
-            guard let imageData = try? Data(contentsOf: iconURL) else { print("couldnt fetch weather icon data"); return }
-            let image = UIImage(data: imageData)
-            completion(image)
-        }
+    private func fetchWeatherIcon(weather: Weather?, completion: @escaping (UIImage?) -> Void) {
+        guard let weather = weather else { return }
+        weatherService.webService.load(resource: weather.iconResource, completion: completion)
     }
 }
 
@@ -79,11 +71,10 @@ extension CurrentWeatherVC: UITableViewDataSource {
 extension CurrentWeatherVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        guard let cell = cell as? HourlyForecastTableViewCell,
-            let weatherIcon = forecast?[indexPath.row].weatherIcon
-        else { return }
+        guard let cell = cell as? HourlyForecastTableViewCell
+            else { return }
         
-        fetchWeatherIcon(forId: weatherIcon) { [weak cell] iconImage in
+        fetchWeatherIcon(weather: forecast?[indexPath.row]) { [weak cell] iconImage in
             DispatchQueue.main.async {
                 cell?.icon = iconImage
             }

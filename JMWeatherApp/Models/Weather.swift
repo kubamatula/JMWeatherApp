@@ -16,6 +16,10 @@ struct Weather {
     var weatherText: String
     var dateTime: Int
     var location: Location
+    
+    var iconResource: Resource<UIImage> {
+        return Resource(url: URL(string: "https://developer.accuweather.com/sites/default/files/\(String(format: "%02d", weatherIcon))-s.png")!, parse: { return UIImage(data: $0) })
+    }
 }
 
 extension Weather {

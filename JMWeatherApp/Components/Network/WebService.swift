@@ -16,4 +16,10 @@ class WebSerivce {
             completion(objects)
         }.resume()
     }
+    
+    private init(){
+        
+    }
+    
+    static let shared = WebSerivce()
 }

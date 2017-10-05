@@ -12,5 +12,7 @@ protocol WeatherService: AnyObject {
     func fetchLocation(forCity city: String, completion: @escaping ([Location]?) -> Void)
     func fetchWeather(forLocation location: Location, completion: @escaping ([Weather]?) -> Void)
     func fetch12HourForecast(forLocation location: Location, completion: @escaping ([Weather]?) -> Void)
+    
+    var webService: WebSerivce { get }
 }
 

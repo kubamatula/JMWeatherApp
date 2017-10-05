@@ -9,11 +9,15 @@
 import Foundation
 import SwiftyJSON
 
-class AccuWeatherService: WebSerivce, WeatherService {
+class AccuWeatherService: WeatherService {
+    
+    var webService: WebSerivce {
+        return WebSerivce.shared
+    }
     
     func fetchLocation(forCity city: String, completion: @escaping ([Location]?) -> Void) {
         let resource = Location.resource(name: city)
-        load(resource: resource, completion: completion)
+        webService.load(resource: resource, completion: completion)
     }
     
     func fetchWeather(forLocation location: Location, completion: @escaping ([Weather]?) -> Void) {
@@ -27,7 +31,7 @@ class AccuWeatherService: WebSerivce, WeatherService {
     private func tryFetchingWeather(forLocation location: Location, resourceFunc: @escaping (String) -> Resource<[Weather]>, completion: @escaping ([Weather]?) -> Void) {
         if let key = location.key {
             let resource = resourceFunc(key)
-            load(resource: resource, completion: completion)
+            webService.load(resource: resource, completion: completion)
         } else {
             fetchLocation(forCity: location.name) { locations in
                 guard let location = locations?.first else { return }
