@@ -24,6 +24,7 @@ class ForecastDataSourceAndDelegate: NSObject {
         
         weatherService.fetch12HourForecast(forLocation: weather.location) { [weak self] forecast in
             self?.forecast = forecast
+            guard forecast != nil else { print("error wetching weather"); return }
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }

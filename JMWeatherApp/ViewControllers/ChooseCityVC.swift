@@ -59,8 +59,8 @@ class ChooseCityVC: UIViewController {
             self?.fetchedWeather = weather?.first
             DispatchQueue.main.async {
                 self?.spinner.stopAnimating()
-                guard weather?.first != nil else { self?.alert(message: "Error fetching weather"); return }
-                self?.storeLocation(location)
+                guard let weather = weather?.first else { self?.alert(message: "Error fetching weather"); return }
+                self?.storeLocation(weather.location)
                 self?.tableView.reloadData()
                 self?.performSegue(withIdentifier: Segues.toWeather.identifier, sender: self)
             }
