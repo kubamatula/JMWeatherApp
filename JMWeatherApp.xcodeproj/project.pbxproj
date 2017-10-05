@@ -27,12 +27,11 @@
 		CE5DA4351F80F68F00014418 /* WeatherDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4341F80F68F00014418 /* WeatherDetailsView.swift */; };
 		CE5DA4391F80FADD00014418 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4381F80F93700014418 /* Weather.swift */; };
 		CE5DA43D1F80FFF700014418 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA43C1F80FFF700014418 /* Constants.swift */; };
-		CE5DA4481F81233900014418 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA43E1F8100A100014418 /* Result.swift */; };
 		CE5DA4491F81233E00014418 /* AccuWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4441F810BBE00014418 /* AccuWeatherService.swift */; };
 		CE5DA44A1F81234100014418 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4431F810BBE00014418 /* Location.swift */; };
 		CE5DA44B1F81234300014418 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA4411F810BA000014418 /* WeatherService.swift */; };
-		CE5DA44E1F81237000014418 /* WError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DA43A1F80FFA000014418 /* WError.swift */; };
 		CE7FA1451F85878C00B1DFE2 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FA1441F85878B00B1DFE2 /* Resource.swift */; };
+		CE7FA1471F85B70E00B1DFE2 /* JsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FA1461F85B70E00B1DFE2 /* JsonDecodable.swift */; };
 		CED90E291F81871D0049020D /* TemperatureColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED90E281F81871D0049020D /* TemperatureColorProvider.swift */; };
 		CED90E2B1F818CD20049020D /* SimpleWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED90E2A1F818CD20049020D /* SimpleWeatherViewModel.swift */; };
 		CED90E2E1F8196E60049020D /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED90E2D1F8196E60049020D /* DateFormatter+.swift */; };
@@ -78,13 +77,12 @@
 		CE5DA4331F80F68F00014418 /* WeatherDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailsView.xib; sourceTree = "<group>"; };
 		CE5DA4341F80F68F00014418 /* WeatherDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsView.swift; sourceTree = "<group>"; };
 		CE5DA4381F80F93700014418 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		CE5DA43A1F80FFA000014418 /* WError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WError.swift; sourceTree = "<group>"; };
 		CE5DA43C1F80FFF700014418 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CE5DA43E1F8100A100014418 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CE5DA4411F810BA000014418 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		CE5DA4431F810BBE00014418 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		CE5DA4441F810BBE00014418 /* AccuWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccuWeatherService.swift; sourceTree = "<group>"; };
 		CE7FA1441F85878B00B1DFE2 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		CE7FA1461F85B70E00B1DFE2 /* JsonDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecodable.swift; sourceTree = "<group>"; };
 		CED90E281F81871D0049020D /* TemperatureColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureColorProvider.swift; sourceTree = "<group>"; };
 		CED90E2A1F818CD20049020D /* SimpleWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWeatherViewModel.swift; sourceTree = "<group>"; };
 		CED90E2D1F8196E60049020D /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
@@ -239,8 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				CED90E2F1F819EE10049020D /* Persistence */,
-				CE5DA4311F80F1F100014418 /* Result */,
-				CE5DA4301F80F1EA00014418 /* Errors */,
 				CE5DA42F1F80F1D700014418 /* WeatherService */,
 				CE5DA42E1F80F1CD00014418 /* Network */,
 			);
@@ -252,6 +248,7 @@
 			children = (
 				8CCEC78A1F84F06D00A57958 /* WebService.swift */,
 				CE7FA1441F85878B00B1DFE2 /* Resource.swift */,
+				CE7FA1461F85B70E00B1DFE2 /* JsonDecodable.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -263,22 +260,6 @@
 				CE5DA4411F810BA000014418 /* WeatherService.swift */,
 			);
 			path = WeatherService;
-			sourceTree = "<group>";
-		};
-		CE5DA4301F80F1EA00014418 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				CE5DA43A1F80FFA000014418 /* WError.swift */,
-			);
-			path = Errors;
-			sourceTree = "<group>";
-		};
-		CE5DA4311F80F1F100014418 /* Result */ = {
-			isa = PBXGroup;
-			children = (
-				CE5DA43E1F8100A100014418 /* Result.swift */,
-			);
-			path = Result;
 			sourceTree = "<group>";
 		};
 		CE5DA4421F810BAD00014418 /* AccuWeatherService */ = {
@@ -497,7 +478,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4BD3CE1F81CE9E003038F0 /* UIViewController+alert.swift in Sources */,
-				CE5DA4481F81233900014418 /* Result.swift in Sources */,
 				CED90E291F81871D0049020D /* TemperatureColorProvider.swift in Sources */,
 				CE7FA1451F85878C00B1DFE2 /* Resource.swift in Sources */,
 				CE0DA2AB1F8147A300D1FC24 /* CurrentWeatherVC.swift in Sources */,
@@ -514,8 +494,8 @@
 				CED90E331F81A0620049020D /* DiskLocationPersistanceManager.swift in Sources */,
 				CED90E2E1F8196E60049020D /* DateFormatter+.swift in Sources */,
 				8CCEC7901F84F32C00A57958 /* AccuWeatherEndpoints.swift in Sources */,
+				CE7FA1471F85B70E00B1DFE2 /* JsonDecodable.swift in Sources */,
 				CE5DA4091F80EF3800014418 /* AppDelegate.swift in Sources */,
-				CE5DA44E1F81237000014418 /* WError.swift in Sources */,
 				CE5DA43D1F80FFF700014418 /* Constants.swift in Sources */,
 				CE5DA4491F81233E00014418 /* AccuWeatherService.swift in Sources */,
 			);

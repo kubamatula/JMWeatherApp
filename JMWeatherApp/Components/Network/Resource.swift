@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct Resource<A>{
     let url: URL
@@ -21,19 +20,6 @@ extension Resource {
             return parseJSON(json)
         }
         self.init(url: url, parse: parse)
-    }
-}
-
-protocol JsonDecodable {
-    associatedtype A
-    static func parse(json: JSON) -> A?
-}
-
-extension JsonDecodable {
-    static func arrayParse(json: JSON) -> [A]? {
-        return json.flatMap { (_, json) in
-            return parse(json: json)
-        }
     }
 }
 
