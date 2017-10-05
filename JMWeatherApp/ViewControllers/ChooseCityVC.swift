@@ -10,37 +10,26 @@ import UIKit
 
 class ChooseCityVC: UIViewController {
     // MARK:- Properties
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.dataSource = self
-            tableView.delegate = self
-        }
-    }
-    
-    @IBOutlet private weak var cityTextField: UITextField! {
-        didSet {
-            cityTextField.delegate = self
-        }
-    }
-    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var cityTextField: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var city: String {
         return cityTextField.text ?? ""
     }
     
-    lazy var storedLocations: [Location] = locationPersistanceManager.loadLocations() ?? []
-    
+    lazy var locations: [Location] = locationPersistanceManager.loadLocations() ?? []
     private let locationPersistanceManager: LocationPersistanceManager = DiskLocationPersistanceManager.sharedInstance
     private var fetchedWeather: Weather?
     
-    private lazy var weatherService: WeatherService = {
-        return AccuWeatherService()
-    }()
+    private let weatherService: WeatherService = AccuWeatherService()
     
     // MARK:- VC Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        cityTextField.delegate = self
         navigationItem.title = "Choose city"
     }
     
@@ -68,20 +57,20 @@ class ChooseCityVC: UIViewController {
         spinner.startAnimating()
         weatherService.fetchWeather(forLocation:location){ [weak self] weather in
             self?.fetchedWeather = weather?.first
-            guard weather?.first != nil else { return }
             DispatchQueue.main.async {
+                self?.spinner.stopAnimating()
+                guard weather?.first != nil else { self?.alert(message: "Error fetching weather"); return }
                 self?.storeLocation(location)
                 self?.tableView.reloadData()
-                self?.spinner.stopAnimating()
                 self?.performSegue(withIdentifier: Segues.toWeather.identifier, sender: self)
             }
         }
     }
     
     private func storeLocation(_ location: Location){
-        if !storedLocations.contains(location) {
-            storedLocations.append(location)
-            locationPersistanceManager.saveLocations(storedLocations)
+        if !locations.contains(location) {
+            locations.append(location)
+            locationPersistanceManager.saveLocations(locations)
         }
     }
 }
@@ -91,7 +80,6 @@ extension ChooseCityVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == cityTextField {
             checkWeather(forLocation: Location(name: city))
-            return true
         }
         return true
     }
@@ -107,12 +95,12 @@ extension ChooseCityVC: UITextFieldDelegate {
 //MARK:- TableViewDataSource
 extension ChooseCityVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storedLocations.count
+        return locations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.city.identifier, for: indexPath)
-        let city = storedLocations[indexPath.row].name
+        let city = locations[indexPath.row].name
         cell.textLabel?.text = city
         return cell
     }
@@ -121,7 +109,7 @@ extension ChooseCityVC: UITableViewDataSource {
 //MARK:- TableViewDelegate
 extension ChooseCityVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = storedLocations[indexPath.row]
+        let location = locations[indexPath.row]
         checkWeather(forLocation: location)
     }
 }
