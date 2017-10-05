@@ -1,42 +1,39 @@
 //
 //  Resource.swift
-//  WeatherApp
+//  JMWeatherApp
 //
-//  Created by Jakub Matuła on 01/10/2017.
+//  Created by Jakub Matuła on 04/10/2017.
 //  Copyright © 2017 Jakub Matuła. All rights reserved.
 //
 
 import Foundation
+import SwiftyJSON
 
-/// Object representing a resource on some endpoint, A is the type that can be instantiated once resource data is fetched
-struct Resource {
-    let path: String
-    let parameters: [String: String]
-    let method: Method
-}
-
-extension Resource: CustomStringConvertible {
-    var description: String {
-        return "Path: \(path), parameters: \(parameters), method: \(method)"
-    }
+struct Resource<A>{
+    let url: URL
+    let parse: (Data) -> A?
 }
 
 extension Resource {
-    func toRequest(baseURL: URL) -> URLRequest {
-        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
-        components?.path = path
-        components?.queryItems = parameters.map { URLQueryItem(name: $0, value: $1)}
-        let finalURL = components?.url ?? baseURL
-        var request = URLRequest(url: finalURL)
-        // TODO
-        // Left only for testing, so that requests time out fast
-        request.timeoutInterval = 10
-        request.httpMethod = method.rawValue
-        return request
+    init(url: URL, parseJSON: @escaping (JSON) -> A?) {
+        let parse: (Data) -> A? = { data in
+            let json = JSON(data)
+            return parseJSON(json)
+        }
+        self.init(url: url, parse: parse)
     }
 }
 
-public enum Method: String {
-    case GET
-    case POST
+protocol JsonDecodable {
+    associatedtype A
+    static func parse(json: JSON) -> A?
 }
+
+extension JsonDecodable {
+    static func arrayParse(json: JSON) -> [A]? {
+        return json.flatMap { (_, json) in
+            return parse(json: json)
+        }
+    }
+}
+

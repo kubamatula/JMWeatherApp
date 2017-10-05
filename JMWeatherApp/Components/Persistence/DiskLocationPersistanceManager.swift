@@ -8,13 +8,13 @@
 
 import Foundation
 
-class DiskCityPersistanceManager {
+class DiskLocationPersistanceManager {
 
     private let url: URL
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     
-    static let sharedInstance = DiskCityPersistanceManager(path: "locationStorage.json")
+    static let sharedInstance = DiskLocationPersistanceManager(path: "locationStorage.json")
     
     private static func documentsURL() -> URL {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -23,11 +23,11 @@ class DiskCityPersistanceManager {
     }
     
     init(path: String) {
-        url = DiskCityPersistanceManager.documentsURL().appendingPathComponent(path)
+        url = DiskLocationPersistanceManager.documentsURL().appendingPathComponent(path)
     }
 }
 
-extension DiskCityPersistanceManager: LocationPersistanceManager {
+extension DiskLocationPersistanceManager: LocationPersistanceManager {
     
     func saveLocations(_ locations: [Location]) {
         do {

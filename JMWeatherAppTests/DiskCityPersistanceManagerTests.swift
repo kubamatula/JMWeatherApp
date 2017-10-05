@@ -18,12 +18,12 @@ class DiskCityPersistanceManagerTests: XCTestCase {
     ]
     
     func testLoadLocationsDoesntCrash(){
-        let persistanceManager = DiskCityPersistanceManager(path: "nonexistendpath")
+        let persistanceManager = DiskLocationPersistanceManager(path: "nonexistendpath")
         _ = persistanceManager.loadLocations()
     }
     
     func testSavedEqualsLoaded() {
-        let persistanceManager = DiskCityPersistanceManager(path: "locations.json")
+        let persistanceManager = DiskLocationPersistanceManager(path: "locations.json")
         persistanceManager.saveLocations(sampleLocations)
         let locations = persistanceManager.loadLocations()!
         XCTAssertEqual(sampleLocations, locations)
@@ -31,7 +31,7 @@ class DiskCityPersistanceManagerTests: XCTestCase {
     }
     
     func testClear(){
-        let persistanceManager = DiskCityPersistanceManager(path: "locations.json")
+        let persistanceManager = DiskLocationPersistanceManager(path: "locations.json")
         persistanceManager.saveLocations(sampleLocations)
         persistanceManager.clearLocations()
         let locations = persistanceManager.loadLocations()

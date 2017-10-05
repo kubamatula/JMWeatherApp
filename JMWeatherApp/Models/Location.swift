@@ -19,16 +19,21 @@ struct Location: Codable {
     }
 }
 
-extension Location: Mappable {
-    
-    static func mapToModel(_ object: Any) -> Result<Location, WError> {
-        let json = JSON(object)
+extension Location {
+    static func resource(name: String) -> Resource<[Location]> {
+        let url = AccuWeatherEndpoints.locations.url(parameters: ["q" : name])
+        return Resource<[Location]>(url: url, parseJSON: Location.arrayParse(json:))
+    }
+}
+
+extension Location: JsonDecodable {
+    static func parse(json: JSON) -> Location? {
         guard let key = json["Key"].string,
             let name = json["EnglishName"].string
             else {
-                return .failure(.parser)
+                return nil
         }
-        return .success(Location(name: name, key: key))
+        return Location(name: name, key: key)
     }
 }
 

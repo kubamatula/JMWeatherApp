@@ -13,6 +13,7 @@ class CurrentWeatherVC: UIViewController {
     // MARK:- Properties
     var forecast: [Weather]?
     var currentWeather: Weather?
+    var weatherService: WeatherService!
     
     @IBOutlet weak var currentWeatherView: WeatherDetailsView!
     @IBOutlet weak var forecastTableView: UITableView! {
@@ -21,12 +22,6 @@ class CurrentWeatherVC: UIViewController {
             forecastTableView.delegate = self
         }
     }
-    
-    private lazy var weatherService: WeatherService = {
-        let accuWeatherConnection = Connection(session: URLSession.shared)
-        let accuWeatherURL = URL(string: Constants.AccuWeatherBaseURL)!
-        return AccuWeatherService(connection: accuWeatherConnection, baseURL: accuWeatherURL, APIKey: Constants.AccuWeatherAPIKey)
-    }()
     
     // MARK:- Lifecycle
     override func viewDidLoad() {
@@ -43,8 +38,12 @@ class CurrentWeatherVC: UIViewController {
             }
         }
         
-        weatherService.delegate = self
-        weatherService.fetch12HourForecast(forLocation: currentWeather!.location)
+        weatherService.fetch12HourForecast(forLocation: currentWeather!.location) { [weak self] forecast in
+            self?.forecast = forecast
+            DispatchQueue.main.async {
+                self?.forecastTableView.reloadData()
+            }
+        }
     }
 
     private func fetchWeatherIcon(forId id: Int?, completion: @escaping (UIImage?) -> Void) {
@@ -89,19 +88,6 @@ extension CurrentWeatherVC: UITableViewDelegate {
                 cell?.icon = iconImage
             }
         }
-    }
-}
-
-//MARK:- WeatherServiceDelegate
-extension CurrentWeatherVC: WeatherServiceDelegate {
-    func finishedFetching(forecast: [Weather]) {
-        self.forecast = forecast
-        forecastTableView.reloadData()
-    }
-    
-    func failedFetching(with error: WError) {
-        print("Failure \(error.localizedDescription)")
-        alert(message: "Something went wrong. Make sure You are connected to the internet", title: "Error")
     }
 }
 
