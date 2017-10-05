@@ -28,6 +28,11 @@ class AccuWeatherService: WeatherService {
         tryFetchingWeather(forLocation: location, resourceFunc: Weather.forecast12Hours(locationKey:), completion: completion)
     }
     
+    func fetchWeatherIcon(weather: Weather?, completion: @escaping (UIImage?) -> Void) {
+        guard let weather = weather else { return }
+        webService.load(resource: weather.iconResource, completion: completion)
+    }
+    
     private func tryFetchingWeather(forLocation location: Location, resourceFunc: @escaping (String) -> Resource<[Weather]>, completion: @escaping ([Weather]?) -> Void) {
         if let key = location.key {
             let resource = resourceFunc(key)
