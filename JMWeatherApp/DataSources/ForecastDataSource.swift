@@ -24,11 +24,26 @@ class ForecastDataSourceAndDelegate: NSObject {
         
         weatherService.fetch12HourForecast(forLocation: weather.location) { [weak self] forecast in
             self?.forecast = forecast
-            guard forecast != nil else { print("error wetching weather"); return }
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                if let forecast = forecast, forecast.isEmpty {
+                    let noItemsLabel = strongSelf.noItemsLabel(text: "Fetching forecast unsuccesful")
+                    noItemsLabel.center = strongSelf.tableView.center
+                    self?.tableView.backgroundView = noItemsLabel
+                }
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+    private func noItemsLabel(text: String) -> UILabel {
+        let noItemsLabel = UILabel(frame: .zero)
+        noItemsLabel.text = text
+        noItemsLabel.font = UIFont(name: noItemsLabel.font.fontName, size: 25)
+        noItemsLabel.numberOfLines = 0
+        noItemsLabel.sizeToFit()
+        noItemsLabel.textAlignment = .center
+        return noItemsLabel
     }
 }
 
