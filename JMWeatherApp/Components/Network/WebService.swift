@@ -11,15 +11,19 @@ import UIKit
 
 class WebSerivce {
     func load<A>(resource: Resource<A>, completion: @escaping (A?) -> Void) {
-        URLSession.shared.dataTask(with: resource.url) { data, _, _ in
+        urlSession.dataTask(with: resource.url) { data, _, _ in
             let objects = data.flatMap(resource.parse)
             completion(objects)
         }.resume()
     }
     
-    private init(){
-        
-    }
     
+    private init(){
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 5
+        configuration.timeoutIntervalForResource = 10
+        self.urlSession = URLSession(configuration: configuration)
+    }
+    private let urlSession: URLSession
     static let shared = WebSerivce()
 }

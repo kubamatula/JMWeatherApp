@@ -39,7 +39,7 @@ class AccuWeatherService: WeatherService {
             webService.load(resource: resource, completion: completion)
         } else {
             fetchLocation(forCity: location.name) { locations in
-                guard let location = locations?.first else { return }
+                guard let location = locations?.first else { completion(nil); return }
                 self.tryFetchingWeather(forLocation: location, resourceFunc: resourceFunc) { weathers in
                     guard let weathers = weathers else { completion(nil); return}
                     let weathersWithLocation = weathers.map({ (weather: Weather) -> Weather in
